@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+    <title>Services Status for Organizations</title>
+    <link rel="apple-touch-icon-precomposed" href="./images/default_item_gray.png"/>
+    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.8/js/esri/css/esri.css"/>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript" src="//js.arcgis.com/3.8/"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+  <body id="pageBody" class="claro" style="overflow-y:scroll;">
+    <div id="orgNode">
+      <div id="dateNode"></div>
+      <img id="orgThumbnail" src="./images/default_item_gray.png" alt="" />
+      <div id="appTitle">
+        <span>Services Status for Organizations</span>
+      </div>
+      <div id="orgName"></div>
+      <div id="portalUser"></div>
+    </div>
+    <div id="section.services" class="section">
+      <div id="title.services" class="sectionTitle servicesSection">
+        SERVICES
+      </div>
+      <div class="previewTableContainer">
+        <div class="titleNode servicesTitle" access="private">
+          <span>PRIVATE</span> <span id="stats.services.private" class="stats"></span>
+        </div>
+        <table id="table.services.private" class="previewTable" WIDTH=100% RULES=ROWS></table>
+      </div>
+      <div class="previewTableContainer">
+        <div class="titleNode servicesTitle" access="org">
+          <span>ORGANIZATION</span> <span id="stats.services.org" class="stats"></span>
+        </div>
+        <table id="table.services.org" class="previewTable" WIDTH=100% RULES=ROWS></table>
+      </div>
+      <div class="previewTableContainer">
+        <div class="titleNode servicesTitle" access="shared">
+          <span>SHARED</span> <span id="stats.services.shared" class="stats"></span>
+        </div>
+        <table id="table.services.shared" class="previewTable" WIDTH=100% RULES=ROWS></table>
+      </div>
+      <div class="previewTableContainer">
+        <div class="titleNode servicesTitle" access="public">
+          <span>PUBLIC</span> <span id="stats.services.public" class="stats"></span>
+        </div>
+        <table id="table.services.public" class="previewTable" WIDTH=100% RULES=ROWS></table>
+      </div>
+    </div>
+    <div id="section.webmaps" class="section">
+      <div id="title.webmaps" class="sectionTitle webmapsSection">
+        WEBMAPS
+      </div>
+      <div class="previewTableContainer">
+        <div class="titleNode webmapsTitle" access="private">
+          <span>PRIVATE</span> <span id="stats.webmaps.private" class="stats"></span>
+        </div>
+        <table id="table.webmaps.private" class="previewTable" WIDTH=100% RULES=ROWS></table>
+      </div>
+      <div class="previewTableContainer">
+        <div class="titleNode webmapsTitle" access="org">
+          <span>ORGANIZATION</span> <span id="stats.webmaps.org" class="stats"></span>
+        </div>
+        <table id="table.webmaps.org" class="previewTable" WIDTH=100% RULES=ROWS></table>
+      </div>
+      <div class="previewTableContainer">
+        <div class="titleNode webmapsTitle" access="shared">
+          <span>SHARED</span> <span id="stats.webmaps.shared" class="stats"></span>
+        </div>
+        <table id="table.webmaps.shared" class="previewTable" WIDTH=100% RULES=ROWS></table>
+      </div>
+      <div class="previewTableContainer">
+        <div class="titleNode webmapsTitle" access="public">
+          <span>PUBLIC</span> <span id="stats.webmaps.public" class="stats"></span>
+        </div>
+        <table id="table.webmaps.public" class="previewTable" WIDTH=100% RULES=ROWS></table>
+      </div>
+    </div>
+  </body>
+</html>
