@@ -1,274 +1,239 @@
 html, body, #mainContainer {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: "segoe ui", sans-serif;
-  color: white;
-  background-color: #222;
+  width       : 100%;
+  height      : 100%;
+  margin      : 0;
+  padding     : 0;
+  font-family : "Trebuchet", "segoe ui", sans-serif;
+  color       : #333;
 }
 
 .dijitDialogUnderlay {
-  display: none !important;
+  display : none !important;
 }
 
-#orgNode {
-  background-color: #222;
-  vertical-align: middle;
+#topNode {
+  background-color : #444;
+  color            : #eee;
+  font-weight      : bolder;
+  margin-bottom    : 20px;
+  padding          : 10px;
 }
 
 #orgThumbnail {
-  float: left;
-  max-height: 50px;
-  margin: 20px;
-  border-radius: 3px;
-  box-shadow: 0 0 50px white;
-}
-
-#appTitle {
-  text-align: center;
-  width: 100%;
+  background-color : ghostwhite;
+  max-height       : 50px;
+  border-radius    : 5px;
+  padding          : 10px;
 }
 
 #orgName {
-  width: 100%;
-  text-align: center;
-  padding-top: 15px;
-  font-size: x-large;
+  font-size : x-large;
 }
 
 #dateNode {
-  float: right;
-  font-size: small;
-  font-style: italic;
-  margin: 5px 10px;
+  font-size  : small;
+  font-style : italic;
 }
 
 #portalUser {
-  font-size: x-small;
-  clear: both;
-  float: right;
-  margin: 3px;
+  font-size : small;
 }
 
 .section {
-  clear: both;
-  margin-bottom: 20px;
+  clear         : both;
+  margin-bottom : 20px;
 }
 
 .sectionTitle {
-  height: 30px;
-  padding: 10px;
-  font-size: x-large;
-  font-weight: bolder;
-  background-color: #333;
-  cursor: pointer;
+  cursor           : pointer;
+  height           : 30px;
+  padding          : 10px;
+  font-size        : x-large;
+  font-weight      : bolder;
+  background-color : #888;
 }
 
 .sectionTitle:hover, .titleNode:hover {
-  background-color: #444;
+  background-color : #b4d0ee;
+  border-top-color : #020567;
 }
 
 .servicesSection {
-  border-top: solid 3px #555;
-  color: darkred;
-  text-shadow: 1px 1px 0 #111;
+  border-top : solid 3px #222;
 }
 
 .webmapsSection {
-  border-top: solid 3px #555;
-  color: #1b458b;
-  text-shadow: 1px 1px 0 #111;
+  border-top : solid 3px #555;
 }
 
 .previewTableContainer {
-  margin: 10px;
-  padding: 10px;
+  margin  : 10px;
+  padding : 10px;
 }
 
 .titleNode {
-  height: 20px;
-  padding: 10px;
-  cursor: pointer;
-  font-weight: bolder;
-  font-size: large;
-  background-color: #333;
+  height           : 20px;
+  padding          : 10px;
+  cursor           : pointer;
+  font-weight      : bolder;
+  font-size        : large;
+  background-color : #ccc;
 }
 
 .servicesTitle {
-  border-top: solid 3px darkred;
-  text-shadow: 2px 2px 0 #111;
+  border-top : solid 3px #555;
 }
 
 .webmapsTitle {
-  border-top: solid 3px #1b458b;
-  text-shadow: 2px 2px 0 #111;
+  border-top : solid 3px #555;
 }
 
 .stats {
-  float: right;
-  font-size: small;
-  font-style: italic;
-  padding-top: 5px;
+  float       : right;
+  font-size   : small;
+  font-style  : italic;
+  padding-top : 5px;
 }
 
 .previewTable {
-  font-size: 11pt;
-}
-
-.previewTable td {
-  /*border-top: solid 1px #777;*/
+  font-size        : 11pt;
+  background-color : ghostwhite;
 }
 
 .ownerNameCell {
-  width: 150px;
-  vertical-align: top;
+  width          : 150px;
+  vertical-align : top;
 }
 
 .ownerNameNode {
-  color: silver;
-  text-align: right;
-  padding-right: 10px;
-  font-weight: bolder;
+  text-align    : right;
+  padding-right : 10px;
+  font-weight   : bolder;
 }
 
 .itemNode {
-  float: left;
-  width: 60px;
-  height: 40px;
-  margin: 2px;
-  padding: 2px;
-  border: solid 1px #444;
-  background: #333 url(./images/default_item_gray.png) no-repeat center;
+  float      : left;
+  width      : 60px;
+  height     : 40px;
+  margin     : 2px;
+  padding    : 2px;
+  border     : solid 1px #444;
+  background : url(./images/default_item_silver.png) no-repeat center;
 }
 
 .status {
-  color: white;
-  background-color: #666;
-  padding: 1px 10px;
+  padding : 1px 10px;
 }
 
 .checking {
-  border-color: orange !important;
-  background-image: url(./images/busy_red.gif) !important;
+  border-color     : orange !important;
+  background-image : url(./images/busy_red.gif) !important;
 }
 
 .available {
-  border-color: limegreen !important;
-  background-image: none !important;
+  border-color     : limegreen !important;
+  background-image : none !important;
 }
 
 .notavailable, .unabletoload, .notchecked, .storedinmap, .nolayers {
-  border-color: darkred !important;
-  background-image: url(./images/GenericExclamation.png) !important;
+  border-color     : darkred !important;
+  background-image : url(./images/GenericExclamation.png) !important;
 }
 
 .aborted {
-  border-color: purple !important;
-  background-image: url(./images/GenericExclamation.png) !important;
+  border-color     : purple !important;
+  background-image : url(./images/GenericExclamation.png) !important;
 }
 
 .busy {
-  border-color: yellow !important;
-  background-image: url(./images/GenericExclamation.png) !important;
+  border-color     : yellow !important;
+  background-image : url(./images/GenericExclamation.png) !important;
 }
 
 .timeoutexceeded {
-  border-color: cyan !important;
-  background-image: url(./images/GenericExclamation.png) !important;
+  border-color     : cyan !important;
+  background-image : url(./images/GenericExclamation.png) !important;
 }
 
 .unabletocompleteoperation {
-  border-color: #ff1bf7 !important;
-  background-image: url(./images/GenericExclamation.png) !important;
+  border-color     : #ff1bf7 !important;
+  background-image : url(./images/GenericExclamation.png) !important;
 }
 
 .thumbNode {
-  width: 60px;
-  height: 40px;
-  cursor: pointer;
+  width  : 60px;
+  height : 40px;
+  cursor : pointer;
 }
 
 .portalUrlNode {
-  cursor: pointer;
-  width: 200px;
-  margin: 2px;
-  padding: 4px;
-}
-
-.portalUrlNode:hover {
-  color: blue;
-  background-color: #dcdcdc;
+  cursor  : pointer;
+  width   : 200px;
+  margin  : 2px;
+  padding : 4px;
 }
 
 .dijitDialogTitleBar, .dijitDialogTitle, .dijitButtonNode {
-  color: white !important;
-  background: #222 !important;
-  border: none !important;
-}
-
-.dijitButtonNode:hover {
-  background: #111 !important;
+  border : none !important;
 }
 
 .dijitTooltipContainer, .dijitDialog, .dijitDialogPaneContent, .esriSignInDialog {
-  color: silver !important;
-  background: #333 !important;
-  border-color: #444 !important;
+  /*color        : silver !important;*/
+  /*background   : #333 !important;*/
+  /*border-color : #444 !important;*/
 }
 
 .dijitTooltipContainer {
-  border-width: 2px !important;
+  border-width : 2px !important;
 }
 
 .dijitTooltipConnector {
-  background-image: url(./images/tooltip.png) !important;
+  background-image : url(./images/tooltip.png) !important;
 }
 
 .dijitDialogPaneActionBar {
-  background: #555 !important;
-  border-color: #555 !important;
+  /*background   : #555 !important;*/
+  /*border-color : #555 !important;*/
 }
 
 .cell {
-  padding: 0 15px;
+  padding       : 0 15px;
   /*border-bottom: solid 1px #add8e6;*/
-  border-bottom: solid 1px silver;
+  border-bottom : solid 1px silver;
 }
 
 .edge {
-  height: 15px;
+  height : 15px;
 }
 
 .info {
-  margin: 0 3px;
-  padding: 3px 6px;
-  border-left: solid 1px darkred;
+  margin      : 0 3px;
+  padding     : 3px 6px;
+  border-left : solid 1px darkred;
 }
 
 .actionNode {
-  margin-top: 10px;
-  font-weight: bolder;
-  border: none !important;
+  margin-top  : 10px;
+  font-weight : bolder;
+  border      : none !important;
 }
 
 .refreshBtn {
-  float: right;
-  margin-left: 20px;
-  margin-top: 0;
-  font-size: small;
-  /* border: solid 1px #666;*/
-  border-radius: 3px;
+  float         : right;
+  margin-left   : 20px;
+  margin-top    : 0;
+  font-size     : small;
+  border-radius : 3px;
 }
 
 .refreshBtn .dijitButtonContents {
-  outline: none !important;
+  outline : none !important;
 }
 
 .dijitDialogPaneActionBar {
-  vertical-align: middle;
+  vertical-align : middle;
 }
 
 .signInInput {
-  float: left;
+  float : left;
 }
