@@ -14,6 +14,7 @@ html, body, #mainContainer {
 #topNode {
   background-color : #444;
   color            : #eee;
+  text-shadow      : 1px 1px 0 black;
   font-weight      : bolder;
   margin-bottom    : 20px;
   padding          : 10px;

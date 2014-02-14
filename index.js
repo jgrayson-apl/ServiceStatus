@@ -102,7 +102,7 @@ require([
 
         // DISPLAY INITIAL TOOLTIP //
         var servicesRefreshButton = registry.byId('refresh.services');
-        Tooltip.show("Click the 'Status Check' button to initiate the process of<br>checking the status of registered services of the organization", refreshButton.domNode);
+        Tooltip.show("Click the 'Status Check' button to initiate the process of<br>checking the status of registered services of the organization", servicesRefreshButton.domNode);
         on.once(servicesRefreshButton, 'click', lang.hitch(this, function () {
           Tooltip.hide(servicesRefreshButton.domNode);
         }));
