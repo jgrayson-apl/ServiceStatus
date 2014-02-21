@@ -12,12 +12,19 @@ html, body, #mainContainer {
 }
 
 #topNode {
-  background-color : #444;
-  color            : #eee;
-  text-shadow      : 1px 1px 0 black;
-  font-weight      : bolder;
-  margin-bottom    : 20px;
-  padding          : 10px;
+  color         : #eee;
+  text-shadow   : 1px 1px 0 black;
+  font-weight   : bolder;
+  margin-bottom : 20px;
+  padding       : 10px;
+  background    : #28343b;
+  background    : -moz-linear-gradient(top, #28343b 0%, #828c95 64%, #ffffff 100%);
+  background    : -webkit-gradient(linear, left top, left bottom, color-stop(0%, #28343b), color-stop(64%, #828c95), color-stop(100%, #ffffff));
+  background    : -webkit-linear-gradient(top, #28343b 0%, #828c95 64%, #ffffff 100%);
+  background    : -o-linear-gradient(top, #28343b 0%, #828c95 64%, #ffffff 100%);
+  background    : -ms-linear-gradient(top, #28343b 0%, #828c95 64%, #ffffff 100%);
+  background    : linear-gradient(to bottom, #28343b 0%, #828c95 64%, #ffffff 100%);
+  filter        : progid:DXImageTransform.Microsoft.gradient(startColorstr='#28343b', endColorstr='#ffffff', GradientType=0);
 }
 
 #orgThumbnail {
@@ -25,6 +32,7 @@ html, body, #mainContainer {
   max-height       : 50px;
   border-radius    : 5px;
   padding          : 10px;
+  box-shadow       : 1px 1px 3px darkslategray;
 }
 
 #orgName {
@@ -46,17 +54,33 @@ html, body, #mainContainer {
 }
 
 .sectionTitle {
-  cursor           : pointer;
-  height           : 30px;
-  padding          : 10px;
-  font-size        : x-large;
-  font-weight      : bolder;
-  background-color : #888;
+  cursor      : pointer;
+  height      : 30px;
+  padding     : 10px;
+  font-size   : x-large;
+  font-weight : bolder;
+  color       : #eee;
+  background  : #445966;
+  background  : -moz-linear-gradient(left, #445966 0%, #828c95 64%, #b5bdc8 100%);
+  background  : -webkit-gradient(linear, left top, right top, color-stop(0%, #445966), color-stop(64%, #828c95), color-stop(100%, #b5bdc8));
+  background  : -webkit-linear-gradient(left, #445966 0%, #828c95 64%, #b5bdc8 100%);
+  background  : -o-linear-gradient(left, #445966 0%, #828c95 64%, #b5bdc8 100%);
+  background  : -ms-linear-gradient(left, #445966 0%, #828c95 64%, #b5bdc8 100%);
+  background  : linear-gradient(to right, #445966 0%, #828c95 64%, #b5bdc8 100%);
+  filter      : progid:DXImageTransform.Microsoft.gradient(startColorstr='#445966', endColorstr='#b5bdc8', GradientType=1);
 }
 
 .sectionTitle:hover, .titleNode:hover {
-  background-color : #b4d0ee;
-  border-top-color : #020567;
+  color            : darkslategray;
+  border-top-color : darkslategray;
+  background       : #add9e4;
+  background       : -moz-linear-gradient(left, #add9e4 0%, #d9edf2 60%, #f7fbfc 100%);
+  background       : -webkit-gradient(linear, left top, right top, color-stop(0%, #add9e4), color-stop(60%, #d9edf2), color-stop(100%, #f7fbfc));
+  background       : -webkit-linear-gradient(left, #add9e4 0%, #d9edf2 60%, #f7fbfc 100%);
+  background       : -o-linear-gradient(left, #add9e4 0%, #d9edf2 60%, #f7fbfc 100%);
+  background       : -ms-linear-gradient(left, #add9e4 0%, #d9edf2 60%, #f7fbfc 100%);
+  background       : linear-gradient(to right, #add9e4 0%, #d9edf2 60%, #f7fbfc 100%);
+  filter           : progid:DXImageTransform.Microsoft.gradient(startColorstr='#add9e4', endColorstr='#f7fbfc', GradientType=1);
 }
 
 .servicesSection {
@@ -73,12 +97,20 @@ html, body, #mainContainer {
 }
 
 .titleNode {
-  height           : 20px;
-  padding          : 10px;
-  cursor           : pointer;
-  font-weight      : bolder;
-  font-size        : large;
-  background-color : #ccc;
+  color       : white;
+  height      : 20px;
+  padding     : 10px;
+  cursor      : pointer;
+  font-weight : bolder;
+  font-size   : large;
+  background  : #596a72;
+  background  : -moz-linear-gradient(left, #596a72 0%, #cedce7 100%);
+  background  : -webkit-gradient(linear, left top, right top, color-stop(0%, #596a72), color-stop(100%, #cedce7));
+  background  : -webkit-linear-gradient(left, #596a72 0%, #cedce7 100%);
+  background  : -o-linear-gradient(left, #596a72 0%, #cedce7 100%);
+  background  : -ms-linear-gradient(left, #596a72 0%, #cedce7 100%);
+  background  : linear-gradient(to right, #596a72 0%, #cedce7 100%);
+  filter      : progid:DXImageTransform.Microsoft.gradient(startColorstr='#596a72', endColorstr='#cedce7', GradientType=1);
 }
 
 .servicesTitle {
@@ -94,6 +126,7 @@ html, body, #mainContainer {
   font-size   : small;
   font-style  : italic;
   padding-top : 5px;
+  color       : darkslategray;
 }
 
 .previewTable {
@@ -118,7 +151,7 @@ html, body, #mainContainer {
   height     : 40px;
   margin     : 2px;
   padding    : 2px;
-  border     : solid 1px #444;
+  border     : solid 2px #444;
   background : url(./images/default_item_silver.png) no-repeat center;
 }
 
@@ -173,6 +206,16 @@ html, body, #mainContainer {
   margin  : 2px;
   padding : 4px;
 }
+
+/*
+#sections .dijitButtonNode {
+  background : #ffb84c;
+}
+
+#sections .dijitButtonText {
+  color : darkslategray;
+}
+*/
 
 .dijitDialogTitleBar, .dijitDialogTitle, .dijitButtonNode {
   border : none !important;
