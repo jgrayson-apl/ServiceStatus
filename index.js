@@ -134,7 +134,11 @@ require([
         portal.signIn().then(lang.hitch(this, function (loggedInUser) {
           // IS USER AND ORG ADMIN //
           if(loggedInUser.role !== 'org_admin') {
-            deferred.reject(new Error("This application is designed for Organization Administrators."));
+            if(confirm("This application is designed for Organization Administrators, if you continue some functionality may not work as desingned. Do you want to continue?")) {
+              deferred.resolve(loggedInUser);
+            } else {
+              deferred.reject(new Error("This application is designed for Organization Administrators."));
+            }
           } else {
             deferred.resolve(loggedInUser);
           }
@@ -323,7 +327,7 @@ require([
       var tableNode = dom.byId(tableNodeId);
       domConstruct.empty(tableNodeId);
 
-      var itemCheckDeferredArray = array.filter(serviceItems,function (serviceItem) {
+      var itemCheckDeferredArray = array.filter(serviceItems, function (serviceItem) {
         // WE COULD ALSO RESTICT ITEMS CHECKED HERE... //
         return true;
         // TO DEBUG PROBLEMATIC ITEMS //
@@ -331,61 +335,61 @@ require([
         // TO AVOID PROBLEMATIC ITEMS //
         //return (array.indexOf(problematicItemIds,serviceItem.id) === -1); //
       }).map(function (item, itemIndex) {
-            //console.log(item);
+        //console.log(item);
 
-            var itemsNodeId = (tableNode.id + '.items.' + item.owner);
-            var itemsNode = dom.byId(itemsNodeId);
-            if(!itemsNode) {
+        var itemsNodeId = (tableNode.id + '.items.' + item.owner);
+        var itemsNode = dom.byId(itemsNodeId);
+        if(!itemsNode) {
 
-              var ownerRow = domConstruct.create('tr', {
-                id: 'owner.' + item.owner,
-                class: 'ownerRow',
-                access: item.access
-              }, tableNode);
+          var ownerRow = domConstruct.create('tr', {
+            id: 'owner.' + item.owner,
+            class: 'ownerRow',
+            access: item.access
+          }, tableNode);
 
-              var ownerNameNode = domConstruct.create('div', {
-                'class': 'ownerNameNode',
-                innerHTML: item.owner
-              }, domConstruct.create('td', {
-                'class': 'ownerNameCell'
-              }, ownerRow));
+          var ownerNameNode = domConstruct.create('div', {
+            'class': 'ownerNameNode',
+            innerHTML: item.owner
+          }, domConstruct.create('td', {
+            'class': 'ownerNameCell'
+          }, ownerRow));
 
-              itemsNode = domConstruct.create('div', {
-                'class': 'itemsNode',
-                id: itemsNodeId
-              }, domConstruct.create('td', {
-                'class': 'itemsCell'
-              }, ownerRow));
-            }
+          itemsNode = domConstruct.create('div', {
+            'class': 'itemsNode',
+            id: itemsNodeId
+          }, domConstruct.create('td', {
+            'class': 'itemsCell'
+          }, ownerRow));
+        }
 
-            var itemNode = domConstruct.create('div', {
-              id: lang.replace("{0}.item.{1}", [itemsNodeId, item.id]),
-              'class': 'itemNode'
-            }, itemsNode);
+        var itemNode = domConstruct.create('div', {
+          id: lang.replace("{0}.item.{1}", [itemsNodeId, item.id]),
+          'class': 'itemNode'
+        }, itemsNode);
 
-            var thumbNode = domConstruct.create('img', {
-              id: lang.replace("{0}.thumb.{1}", [itemsNodeId, item.id]),
-              'class': 'thumbNode',
-              src: './images/blank.png'
-            }, itemNode);
-            connectMouseEvents(thumbNode, item, {message: "Checking..."});
+        var thumbNode = domConstruct.create('img', {
+          id: lang.replace("{0}.thumb.{1}", [itemsNodeId, item.id]),
+          'class': 'thumbNode',
+          src: './images/blank.png'
+        }, itemNode);
+        connectMouseEvents(thumbNode, item, {message: "Checking..."});
 
-            var checkItemAvailability = (itemType === 'services') ? checkServiceAvailability : checkWebmapAvailability;
-            return checkItemAvailability(itemNode.id, item, (itemIndex * 200)).then(lang.hitch(this, function (okStatus) {
+        var checkItemAvailability = (itemType === 'services') ? checkServiceAvailability : checkWebmapAvailability;
+        return checkItemAvailability(itemNode.id, item, (itemIndex * 200)).then(lang.hitch(this, function (okStatus) {
 
-              thumbNode.src = (item.thumbnailUrl || './images/default_item.png');
-              thumbNode.onload = function () {
-                domClass.remove(itemNode, 'checking');
-                domClass.add(itemNode, okStatus.status);
-              };
-              connectMouseEvents(thumbNode, item, okStatus);
+          thumbNode.src = (item.thumbnailUrl || './images/default_item.png');
+          thumbNode.onload = function () {
+            domClass.remove(itemNode, 'checking');
+            domClass.add(itemNode, okStatus.status);
+          };
+          connectMouseEvents(thumbNode, item, okStatus);
 
-            }), lang.hitch(this, function (errorStatus) {
-              domClass.remove(itemNode, 'checking');
-              domClass.add(itemNode, errorStatus.status);
-              connectMouseEvents(thumbNode, item, errorStatus);
-            }));
-          });
+        }), lang.hitch(this, function (errorStatus) {
+          domClass.remove(itemNode, 'checking');
+          domClass.add(itemNode, errorStatus.status);
+          connectMouseEvents(thumbNode, item, errorStatus);
+        }));
+      });
 
       var itemCheckDeferredList = new DeferredList(itemCheckDeferredArray);
       itemCheckDeferredList.then(deferred.resolve, deferred.reject);
@@ -457,28 +461,28 @@ require([
               },
               callbackParamName: "callback"
             }).then(lang.hitch(this, function (response) {
-                  deferred.resolve({
-                    id: item.url,
-                    message: "OK",
-                    status: "available"
-                  });
-                }), lang.hitch(this, function (error) {
+              deferred.resolve({
+                id: item.url,
+                message: "OK",
+                status: "available"
+              });
+            }), lang.hitch(this, function (error) {
 
-                  var errorMessage = error.message ? error.message : 'No Error Message Available';
-                  var status = errorMessage.toLowerCase().replace(/ /g, '');
-                  if(errorMessage === 'Unable to complete  operation.') {
-                    status = 'unabletocompleteoperation';
-                  }
-                  if(errorMessage.indexOf('Unable to load') > -1) {
-                    status = 'unabletoload';
-                  }
-                  deferred.reject({
-                    id: item.url,
-                    message: errorMessage,
-                    status: status
-                  });
+              var errorMessage = error.message ? error.message : 'No Error Message Available';
+              var status = errorMessage.toLowerCase().replace(/ /g, '');
+              if(errorMessage === 'Unable to complete  operation.') {
+                status = 'unabletocompleteoperation';
+              }
+              if(errorMessage.indexOf('Unable to load') > -1) {
+                status = 'unabletoload';
+              }
+              deferred.reject({
+                id: item.url,
+                message: errorMessage,
+                status: status
+              });
 
-                }));
+            }));
 
           }), delay);
 
@@ -505,14 +509,14 @@ require([
         },
         callbackParamName: "callback"
       }).then(lang.hitch(this, function (response) {
-            deferred.resolve({
-              item: item,
-              itemData: response
-            });
-          }), lang.hitch(this, function (error) {
-            //console.warn("getWebmap: ERROR  ::: ",item.itemDataUrl,error);
-            deferred.reject(error);
-          }));
+        deferred.resolve({
+          item: item,
+          itemData: response
+        });
+      }), lang.hitch(this, function (error) {
+        //console.warn("getWebmap: ERROR  ::: ",item.itemDataUrl,error);
+        deferred.reject(error);
+      }));
 
       return deferred.promise;
     }
