@@ -29,7 +29,9 @@ require([
   "esri/arcgis/utils",
   "esri/arcgis/Portal",
   "esri/IdentityManager"
-], function (ready, lang, connect, array, fx, query, on, mouse, dom, domConstruct, domClass, domGeom, domAttr, Deferred, DeferredList, locale, registry, Dialog, popup, Tooltip, TooltipDialog, Button, put, esriRequest, esriKernel, esriConfig, bundle, arcgisUtils, esriPortal, IdentityManager) {
+], function (ready, lang, connect, array, fx, query, on, mouse, dom, domConstruct, domClass, domGeom, domAttr,
+             Deferred, DeferredList, locale, registry, Dialog, popup, Tooltip, TooltipDialog, Button, put, esriRequest,
+             esriKernel, esriConfig, bundle, arcgisUtils, esriPortal, IdentityManager) {
 
   var portalUser;
   var requestTimeoutSeconds = 60;
@@ -40,7 +42,8 @@ require([
     webmaps: 'type:"web map" -type:"web mapping application"'
   };
   var portalUrlList = [
-    document.location.protocol + "//www.arcgis.com"
+    "https://www.arcgis.com"//,
+    //"https://maps.esri.com/portal"
   ];
 
   /**
@@ -56,7 +59,7 @@ require([
   ready(function () {
 
     // PROXY //
-    esriConfig.defaults.io.proxyUrl = "./resources/proxy.php";
+    esriConfig.defaults.io.proxyUrl = "https://maps.esri.com/proxy/DotNET/proxy.ashx";
 
     // PROTOCOL MISMATCH ERROR //
     esriKernel.id.setProtocolErrorHandler(function () {
@@ -127,6 +130,8 @@ require([
      */
     function signInToPortal(portalUrl) {
       var deferred = new Deferred();
+
+      arcgisUtils.arcgisUrl = portalUrl;
 
       var portal = new esriPortal.Portal(portalUrl);
       portal.on('load', lang.hitch(this, function () {
@@ -372,7 +377,7 @@ require([
           'class': 'thumbNode',
           src: './images/blank.png'
         }, itemNode);
-        connectMouseEvents(thumbNode, item, {message: "Checking..."});
+        connectMouseEvents(thumbNode, item, { message: "Checking..." });
 
         var checkItemAvailability = (itemType === 'services') ? checkServiceAvailability : checkWebmapAvailability;
         return checkItemAvailability(itemNode.id, item, (itemIndex * 200)).then(lang.hitch(this, function (okStatus) {
@@ -608,7 +613,7 @@ require([
      */
     function displayItemStatus(node, item, status) {
 
-      var infoTable = put('table.infoTable', {width: '100%', cellPadding: 0, cellSpacing: 0});
+      var infoTable = put('table.infoTable', { width: '100%', cellPadding: 0, cellSpacing: 0 });
       put(infoTable, 'tr td.cell div.info.edge');
       put(infoTable, 'tr td.cell div.info').innerHTML = lang.replace("<b>Type</b>: {type}", item);
       put(infoTable, 'tr td.cell div.info').innerHTML = lang.replace("<b>Title</b>: {title}", item);
@@ -635,7 +640,13 @@ require([
         title: lang.replace('Open map in {portalName}', portalUser.portal),
         onClick: lang.hitch(this, function () {
           var itemType = (item.type === "Web Map") ? "webmap" : "services";
-          var agsMapUrl = lang.replace("{0}//{1}.{2}/home/webmap/viewer.html?{3}={4}", [document.location.protocol, portalUser.portal.urlKey, portalUser.portal.customBaseUrl, itemType, item.id]);
+
+          if(portalUser.portal.portalMode === "singletenant") {
+            var agsMapUrl = lang.replace("{0}//{1}/home/webmap/viewer.html?{2}={3}", [location.protocol, portalUser.portal.portalHostname, itemType, item.id]);
+          } else {
+            var agsMapUrl = lang.replace("{0}//{1}.{2}/home/webmap/viewer.html?{3}={4}", [location.protocol, portalUser.portal.urlKey, portalUser.portal.customBaseUrl, itemType, item.id]);
+          }
+
           window.open(agsMapUrl);
         })
       }, put(closeBtnNode, 'div'));
@@ -699,6 +710,8 @@ require([
           title: document.title,
           content: portalsNode,
           onHide: lang.hitch(this, function () {
+
+
             deferred.resolve(selectedPortalUrl);
           })
         });
